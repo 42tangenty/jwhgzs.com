@@ -41,7 +41,7 @@
             </el-link>
         </div>
     </div>
-    <div class="box hcenter text para">
+    <!-- <div class="box hcenter text para">
         <p>
             <img :src="u('static://public/img/comp_lquot_white')" alt="left quot" class="quot imgAwesome"/>
             Sadly though now and contrary to what I have previously written where the TLD previously represented a kind of Soviet nostalgia, now it is more linked to Russian nationalism and what might actually become a reality – Soviet Union 2.0.
@@ -56,7 +56,7 @@
                 {{ u('other://whatIsSu') }}
             </el-link>
         </p>
-    </div>
+    </div> -->
     <div class="block"></div>
 </template>
 
