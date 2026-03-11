@@ -304,7 +304,7 @@
     useHead({
         script: [
             {
-                src: u('static://public/js/vaptcha'),
+                src: '/ct4.js',
                 body: true
             }
         ],

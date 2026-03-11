@@ -605,35 +605,36 @@ export const vaptchaGo = (scene, callback_ok, callback_close, callback_loaded) =
     }
     
     let loadingId = loadingMsg($t('loading_vaptcha'), - 1)
-    let vaptchaObj
-    vaptcha({
-        vid: useState('config').value.VAPTCHA_CONFIG.vid,
-        mode: 'invisible',
-        scene: scene,
-        area: 'auto'
-    }).then(function(_vaptchaObj) {
-        vaptchaObj = _vaptchaObj
-        vaptchaObj.listen('pass', function() {
-            let serverToken = vaptchaObj.getServerToken()
-            if (callback_ok) {
+    initAlicom4({
+        captchaId: useState('config').value.VAPTCHA_CONFIG.appId,
+        product: 'bind'
+    }, function(captchaObj) {
+        captchaObj.onNextReady(function() {
+            closeLoadingMsg(loadingId)
+            captchaObj.showCaptcha()
+            if (callback_loaded)
+                callback_loaded()
+        }).onSuccess(function() {
+            let result = captchaObj.getValidate()
+            if (result && callback_ok) {
                 callback_ok({
                     vaptchaData: {
-                        server: serverToken.server,
-                        token: serverToken.token,
-                        scene: scene
+                        lot_number: result.lot_number,
+                        captcha_output: result.captcha_output,
+                        pass_token: result.pass_token,
+                        gen_time: result.gen_time
                     }
                 })
             }
-            closeLoadingMsg(loadingId)
-        })
-        vaptchaObj.listen('close', function() {
+            captchaObj.reset()
+            captchaObj.destroy()
+        }).onClose(function() {
             if (callback_close)
                 callback_close()
             closeLoadingMsg(loadingId)
+        }).onError(function() {
+            closeLoadingMsg(loadingId)
         })
-        vaptchaObj.validate()
-        if (callback_loaded)
-            callback_loaded()
     })
 }
 export const jumpReload = () => {
