@@ -52,8 +52,8 @@ export default `
     please_input_repeat: 请重复输入 | Please repeat inputting
     nothing_changed_tip: 什么都没有变哦~ | Nothing changed at all!
     subsite_navigation: 子站导航 | Subsite navigation
-    su_introduce: 本域名为稀有的 .su 苏联国别域名。 | The website has a domain name with the suffix '.su' which stands for the Soviet Union.
-    su_thanks: 感谢域名注册商 | Thanks to the domain name registrar
+    su_introduce: 本网站原为稀有的 .su 苏联国别域名。 | The website had a domain name with the suffix '.su' which stands for the Soviet Union in the past.
+    su_thanks: 吃粪去吧域名注册商 | F**k the domain name registrar
     edit: 编辑 | Edit
     delete: 删除 | Delete
     no_bio_tip: 还没有个人介绍哦~ | No bio yet~

@@ -208,6 +208,9 @@
                         <el-link class="tail_link" :href="u('sponsors://regery')" target="_blank" type="primary">
                             <img :src="u('static://public/img/sponsor_regery')" alt="Regery logo" class="logolink_bigger"/>
                         </el-link>
+                        <el-link class="tail_link" :href="u('sponsors://spaceship')" target="_blank" type="primary">
+                            <img :src="u('static://public/img/sponsor_spaceship')" alt="Spaceship logo" class="logolink"/>
+                        </el-link>
                     </div>
                 </div>
                 

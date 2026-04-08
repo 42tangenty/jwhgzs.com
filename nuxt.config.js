@@ -11,7 +11,9 @@ export default defineNuxtConfig({
         ['@nuxtjs/robots', { configPath: './robots.config' }]
     ],
     i18n: {
-        vueI18n: './i18n.config'
+        locales: ['cn', 'en'],
+        defaultLocale: 'cn',
+        strategy: 'no_prefix'
     },
     components: {
         global: true,
