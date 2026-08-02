@@ -67,7 +67,7 @@
             <i class="fas fa-upload"></i>&nbsp;上传照片
         </el-button>
         <br/><br/>
-        <el-input v-model="searchTag" type="text" size="large" placeholder="找不到你想要的？请输入关键词搜索" @input="peopleList = null">
+        <el-input v-model="searchTag" type="text" size="large" placeholder="找不到你想要的？请输入关键词搜索">
             <template #prefix>
                 <i class="fas fa-search"></i>
             </template>
@@ -208,20 +208,30 @@
         }
     }
     
-    await runThread(async () => await p({
-        name: '数据同步',
-        url: u('local://api/xnzx/PA'),
-        data: { year: classChecked.value[0], 'class': classChecked.value[1], searchTag: searchTag.value },
-        on_ok(data) {
-            peopleList.value = (
-                ((! searchTag.value) || data.data.searchTag == searchTag.value)
-                    ? data.data.peopleList : null
-            )
-            classData.value = data.data.classData
-            PAData.value = data.data.PAData
-        },
-        on_err: () => '即将返回主页~',
-        jump_err: () => j(u('local://xnzx')),
-        type: 'loop'
-    }))
+    function syncData() {
+        const requestedSearchTag = searchTag.value
+        return p({
+            name: '数据同步',
+            url: u('local://api/xnzx/PA'),
+            data: { year: classChecked.value[0], 'class': classChecked.value[1], searchTag: requestedSearchTag },
+            on_ok(data) {
+                if (
+                    requestedSearchTag == searchTag.value
+                    && ((! requestedSearchTag) || data.data.searchTag == requestedSearchTag)
+                ) peopleList.value = data.data.peopleList
+                classData.value = data.data.classData
+                PAData.value = data.data.PAData
+            },
+            on_err: () => '即将返回主页~',
+            jump_err: () => j(u('local://xnzx')),
+            type: 'loop'
+        })
+    }
+    const throttledSyncData = useThrottleFn(syncData, 300, true)
+    watch(searchTag, () => {
+        peopleList.value = null
+        throttledSyncData()
+    })
+    
+    await runThread(syncData)
 </script>

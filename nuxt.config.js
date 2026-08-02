@@ -30,5 +30,13 @@ export default defineNuxtConfig({
         'quill-jwhgzs-edited/dist/quill.snow.css',
         '/public/style.css',
         '/public/quill.css'
-    ]
+    ],
+    vite: {
+        optimizeDeps: {
+            include: ['dayjs']
+        },
+        server: {
+            allowedHosts: ['.jwhgzs.com', '.tzy.su', '.jwh.su']
+        }
+    }
 })
