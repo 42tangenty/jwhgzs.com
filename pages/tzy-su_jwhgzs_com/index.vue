@@ -27,9 +27,9 @@
         <img class="banner" alt="F4 banner" :src="u('static://public/img/tzy_banner')"/>
         <br/>
         <div class="links_box">
-            <img class="link" alt="memories banner" :src="u('static://public/img/tzy_memories')" @click="go('other://doc_memories')"/>
-            <img class="link" alt="bible banner" :src="u('static://public/img/tzy_bible')" @click="go('other://doc_bible')"/>
-            <img class="link" alt="cards banner" :src="u('static://public/img/tzy_cards')" @click="go('other://doc_cards')"/>
+            <img class="link" alt="memories banner" :src="u('static://public/img/tzy_memories')" @click="go('shortUrl://tzy_memories')"/>
+            <img class="link" alt="bible banner" :src="u('static://public/img/tzy_bible')" @click="go('shortUrl://tzy_bible')"/>
+            <img class="link" alt="cards banner" :src="u('static://public/img/tzy_cards')" @click="go('shortUrl://tzy_cards')"/>
         </div>
     </div>
 </template>
